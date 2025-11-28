@@ -93,7 +93,26 @@ namespace Assignment
                                 c.Name,
                                 OrderCount = c.Orders.Count
                             });
-        #endregion
-    }
+
+            // 3. Return a list of categories and how many products each has
+            List<Product> products = new List<Product>()
+            {
+                new Product { ProductID = 1, Name = "Apple", Category = "Fruits", UnitPrice = 3.50m, UnitsInStock = 10 },
+                new Product { ProductID = 2, Name = "Blueberry", Category = "Fruits", UnitPrice = 5.00m, UnitsInStock = 0 },
+                new Product { ProductID = 3, Name = "Cherry", Category = "Fruits", UnitPrice = 4.00m, UnitsInStock = 25 },
+                new Product { ProductID = 4, Name = "Banana", Category = "Fruits", UnitPrice = 2.00m, UnitsInStock = 100 },
+                new Product { ProductID = 5, Name = "Tomato", Category = "Vegetables", UnitPrice = 1.50m, UnitsInStock = 0 },
+                new Product { ProductID = 6, Name = "Potato", Category = "Vegetables", UnitPrice = 1.00m, UnitsInStock = 200 },
+                new Product { ProductID = 7, Name = "Cucumber", Category = "Vegetables", UnitPrice = 2.20m, UnitsInStock = 40 },
+                new Product { ProductID = 8, Name = "Milk", Category = "Dairy", UnitPrice = 12.00m, UnitsInStock = 5 },
+                new Product { ProductID = 9, Name = "Cheese", Category = "Dairy", UnitPrice = 30.00m, UnitsInStock = 15 },
+                new Product { ProductID = 10, Name = "Yogurt", Category = "Dairy", UnitPrice = 8.00m, UnitsInStock = 0 }
+            };
+
+            var categoryCount =
+                products.GroupBy(p => p.Category)
+                        .Select(g => new { Category = g.Key, Count = g.Count() });
+            #endregion
+        }
     }
 }
