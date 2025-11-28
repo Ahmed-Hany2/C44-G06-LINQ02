@@ -116,6 +116,11 @@ namespace Assignment
 
             // 4. Get the total of the numbers in an array.
             int total = Arr.Sum();
+
+            // 5. Get the total number of characters of all words in dictionary_english.txt (Read dictionary_english.txt into Array of String First).
+            string[] words = File.ReadAllLines("dictionary_english.txt");
+
+            int totalChars = words.Sum(w => w.Length);
             #endregion
         }
     }
