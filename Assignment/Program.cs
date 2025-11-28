@@ -212,7 +212,12 @@ namespace Assignment
                 orders.Where(o => o.Customer == "WA")
                       .Skip(2);
 
-            
+            // 3. Return elements starting from the beginning of the array until a number is hit that is less than its position in the array.
+            int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+
+            var valid =
+                numbers.TakeWhile((n, i) => n >= i);
+
 
 
             #endregion
