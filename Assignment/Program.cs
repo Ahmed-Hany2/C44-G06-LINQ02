@@ -136,6 +136,11 @@ namespace Assignment
                 products.GroupBy(p => p.Category)
                         .Select(g => new { Category = g.Key, TotalUnits = g.Sum(p => p.UnitsInStock) });
 
+            //10. Get the cheapest price among each category's products
+            var minPrice =
+                products.GroupBy(p => p.Category)
+                        .Select(g => new { Category = g.Key, MinPrice = g.Min(p => p.UnitPrice) });
+
 
             #endregion
         }
