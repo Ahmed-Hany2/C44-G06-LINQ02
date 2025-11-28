@@ -148,6 +148,12 @@ namespace Assignment
                 let minPrice1 = g.Min(x => x.UnitPrice)
                 select new { Category = g.Key, Products = g.Where(x => x.UnitPrice == minPrice1) };
 
+            // 12. Get the most expensive price among each category's products.
+            var maxPrice =
+            products.GroupBy(p => p.Category)
+                    .Select(g => new { Category = g.Key, MaxPrice = g.Max(p => p.UnitPrice) });
+
+
 
             #endregion
         }
