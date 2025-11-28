@@ -178,6 +178,12 @@ namespace Assignment
                 .Union(customers.Select(c => c.Name[0]))
                 .Distinct();
 
+            // 3. Create one sequence that contains the common first letter from both product and customer names.
+            var commonLetters =
+             products.Select(p => p.Name[0])
+            .Intersect(customers.Select(c => c.Name[0]));
+
+
             #endregion
         }
     }
