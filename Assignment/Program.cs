@@ -199,6 +199,15 @@ namespace Assignment
             products.FirstOrDefault(p => p.UnitPrice > 1000);
 
             #endregion
+
+            #region LINQ - Partitioning Operators
+
+            // 1. Get the first 3 orders from customers in Washington
+            var first3 =
+            orders.Where(o => o.Customer == "WA")
+            .Take(3);
+
+            #endregion
         }
     }
 }
