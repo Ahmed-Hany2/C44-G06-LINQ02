@@ -131,6 +131,12 @@ namespace Assignment
             // 8. Get the average length of the words in dictionary_english.txt (Read dictionary_english.txt into Array of String First).
             double avgLen = words.Average(w => w.Length);
 
+            // 9. Get the total units in stock for each product category.
+            var totalUnits =
+                products.GroupBy(p => p.Category)
+                        .Select(g => new { Category = g.Key, TotalUnits = g.Sum(p => p.UnitsInStock) });
+
+
             #endregion
         }
     }
