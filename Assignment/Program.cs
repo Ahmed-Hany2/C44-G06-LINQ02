@@ -218,6 +218,10 @@ namespace Assignment
             var valid =
                 numbers.TakeWhile((n, i) => n >= i);
 
+            // 4.Get the elements of the array starting from the first element divisible by 3.
+            var divisible =
+                numbers.SkipWhile(n => n % 3 != 0);
+
 
 
             #endregion
