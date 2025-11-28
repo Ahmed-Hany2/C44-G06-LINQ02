@@ -221,8 +221,12 @@ namespace Assignment
             // 4.Get the elements of the array starting from the first element divisible by 3.
             var divisible =
                 numbers.SkipWhile(n => n % 3 != 0);
+            #endregion
 
+            #region LINQ - Quantifiers
 
+            //1. Determine if any of the words in dictionary_english.txt (Read dictionary_english.txt into Array of String First) contain the substring 'ei'.
+            bool found = words.Any(w => w.Contains("ei"));
 
             #endregion
         }
