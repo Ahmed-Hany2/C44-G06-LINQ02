@@ -1,10 +1,245 @@
-﻿namespace Assignment
+﻿using static Assignment.Program;
+
+namespace Assignment
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-           
+            List<Order> orders = new List<Order>
+{
+                new Order { OrderID = 1, Customer = "Ahmed",   OrderDate = new DateTime(1996, 5, 12), Total = 450.00m },
+                new Order { OrderID = 2, Customer = "Hany",    OrderDate = new DateTime(1998, 1, 20), Total = 1200.00m },
+                new Order { OrderID = 3, Customer = "Omar",    OrderDate = new DateTime(1999, 3, 15), Total = 300.00m },
+                new Order { OrderID = 4, Customer = "Mona",    OrderDate = new DateTime(2000, 7, 8),  Total = 499.99m },
+                new Order { OrderID = 5, Customer = "Sara",    OrderDate = new DateTime(1997, 2, 3),  Total = 800.00m },
+                new Order { OrderID = 6, Customer = "Ali",     OrderDate = new DateTime(1998, 11, 11),Total = 50.00m },
+                new Order { OrderID = 7, Customer = "Nour",    OrderDate = new DateTime(1995, 9, 28), Total = 2000.00m },
+                new Order { OrderID = 8, Customer = "Mostafa", OrderDate = new DateTime(1999, 12, 1), Total = 230.00m }
+            };
+            #region LINQ - Aggregate Operators
+
+            // 1. Uses Count to get the number of odd numbers in the array
+            int[] Arr = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+
+            int oddCount = Arr.Count(n => n % 2 != 0);
+
+            // 2. Return a list of customers and how many orders each has.
+             List<Customer> customers = new List<Customer>
+{
+                    new Customer
+                    {
+                        Name = "Ahmed",
+                        City = "Cairo",
+                        State = "WA",
+                        Orders = new List<Order>
+                        {
+                            new Order { OrderID = 101, Customer = "Ahmed",  OrderDate = new DateTime(1997, 3, 12), Total = 250.00m },
+                            new Order { OrderID = 102, Customer = "Ahmed",  OrderDate = new DateTime(1999, 5, 20), Total = 1400.00m }
+                        }
+                    },
+
+                    new Customer
+                    {
+                        Name = "Sara",
+                        City = "Giza",
+                        State = "CA",
+                        Orders = new List<Order>
+                        {
+                            new Order { OrderID = 103, Customer = "Sara", OrderDate = new DateTime(1998, 7, 10), Total = 350.00m },
+                            new Order { OrderID = 104, Customer = "Sara", OrderDate = new DateTime(2000, 1, 2), Total = 780.00m },
+                            new Order { OrderID = 105, Customer = "Sara", OrderDate = new DateTime(1996, 11, 9), Total = 120.00m }
+                        }
+                    },
+
+                    new Customer
+                    {
+                        Name = "Omar",
+                        City = "Alex",
+                        State = "WA",
+                        Orders = new List<Order>
+                        {
+                            new Order { OrderID = 106, Customer = "Omar", OrderDate = new DateTime(1995, 9, 8), Total = 2000.00m }
+                        }
+                    },
+
+                    new Customer
+                    {
+                        Name = "Mona",
+                        City = "Mansoura",
+                        State = "FL",
+                        Orders = new List<Order>
+                        {
+                            new Order { OrderID = 107, Customer = "Mona", OrderDate = new DateTime(2000, 4, 15), Total = 499.99m }
+                        }
+                    },
+
+                    new Customer
+                    {
+                        Name = "Ali",
+                        City = "Cairo",
+                        State = "NY",
+                        Orders = new List<Order>
+                        {
+                            new Order { OrderID = 108, Customer = "Ali", OrderDate = new DateTime(1998, 11, 11), Total = 80.00m },
+                            new Order { OrderID = 109, Customer = "Ali", OrderDate = new DateTime(1999, 12, 2), Total = 600.00m }
+                        }
+                    }
+                };
+
+                    var customerOrderCount =
+                            customers.Select(c => new
+                            {
+                                c.Name,
+                                OrderCount = c.Orders.Count
+                            });
+
+            // 3. Return a list of categories and how many products each has
+            List<Product> products = new List<Product>()
+            {
+                new Product { ProductID = 1, Name = "Apple", Category = "Fruits", UnitPrice = 3.50m, UnitsInStock = 10 },
+                new Product { ProductID = 2, Name = "Blueberry", Category = "Fruits", UnitPrice = 5.00m, UnitsInStock = 0 },
+                new Product { ProductID = 3, Name = "Cherry", Category = "Fruits", UnitPrice = 4.00m, UnitsInStock = 25 },
+                new Product { ProductID = 4, Name = "Banana", Category = "Fruits", UnitPrice = 2.00m, UnitsInStock = 100 },
+                new Product { ProductID = 5, Name = "Tomato", Category = "Vegetables", UnitPrice = 1.50m, UnitsInStock = 0 },
+                new Product { ProductID = 6, Name = "Potato", Category = "Vegetables", UnitPrice = 1.00m, UnitsInStock = 200 },
+                new Product { ProductID = 7, Name = "Cucumber", Category = "Vegetables", UnitPrice = 2.20m, UnitsInStock = 40 },
+                new Product { ProductID = 8, Name = "Milk", Category = "Dairy", UnitPrice = 12.00m, UnitsInStock = 5 },
+                new Product { ProductID = 9, Name = "Cheese", Category = "Dairy", UnitPrice = 30.00m, UnitsInStock = 15 },
+                new Product { ProductID = 10, Name = "Yogurt", Category = "Dairy", UnitPrice = 8.00m, UnitsInStock = 0 }
+            };
+
+            var categoryCount =
+                products.GroupBy(p => p.Category)
+                        .Select(g => new { Category = g.Key, Count = g.Count() });
+
+
+            // 4. Get the total of the numbers in an array.
+            int total = Arr.Sum();
+
+            // 5. Get the total number of characters of all words in dictionary_english.txt (Read dictionary_english.txt into Array of String First).
+            string[] words = File.ReadAllLines("dictionary_english.txt");
+
+            int totalChars = words.Sum(w => w.Length);
+
+            // 6. Get the length of the shortest word in dictionary_english.txt (Read dictionary_english.txt into Array of String First).
+            int minLen = words.Min(w => w.Length);
+
+            // 7. Get the length of the longest word in dictionary_english.txt (Read dictionary_english.txt into Array of String First).
+            int maxLen = words.Max(w => w.Length);
+
+            // 8. Get the average length of the words in dictionary_english.txt (Read dictionary_english.txt into Array of String First).
+            double avgLen = words.Average(w => w.Length);
+
+            // 9. Get the total units in stock for each product category.
+            var totalUnits =
+                products.GroupBy(p => p.Category)
+                        .Select(g => new { Category = g.Key, TotalUnits = g.Sum(p => p.UnitsInStock) });
+
+            //10. Get the cheapest price among each category's products
+            var minPrice =
+                products.GroupBy(p => p.Category)
+                        .Select(g => new { Category = g.Key, MinPrice = g.Min(p => p.UnitPrice) });
+
+            // 11. Get the products with the cheapest price in each category (Use Let)
+            var cheapestProducts =
+                from p in products
+                group p by p.Category into g
+                let minPrice1 = g.Min(x => x.UnitPrice)
+                select new { Category = g.Key, Products = g.Where(x => x.UnitPrice == minPrice1) };
+
+            // 12. Get the most expensive price among each category's products.
+            var maxPrice =
+            products.GroupBy(p => p.Category)
+                    .Select(g => new { Category = g.Key, MaxPrice = g.Max(p => p.UnitPrice) });
+
+            //13. Get the products with the most expensive price in each category.
+            var mostExpensive =
+                from p in products
+                group p by p.Category into g
+                let maxPrice1 = g.Max(x => x.UnitPrice)
+                select new { Category = g.Key, Products = g.Where(x => x.UnitPrice == maxPrice1) };
+
+            // 14. Get the average price of each category's products.
+            var avgPrice =
+            products.GroupBy(p => p.Category)
+                    .Select(g => new { Category = g.Key, AvgPrice = g.Average(p => p.UnitPrice) });
+
+            #endregion
+
+            #region LINQ - Set Operators
+
+            // 1. Find the unique Category names from Product List
+            var uniqueCategories = products.Select(p => p.Category).Distinct();
+
+            // 2. Produce a Sequence containing the unique first letter from both product and customer names.
+            var firstLetters =
+                products.Select(p => p.Name[0])
+                .Union(customers.Select(c => c.Name[0]))
+                .Distinct();
+
+            // 3. Create one sequence that contains the common first letter from both product and customer names.
+            var commonLetters =
+             products.Select(p => p.Name[0])
+            .Intersect(customers.Select(c => c.Name[0]));
+
+            //4. Create one sequence that contains the first letters of product names that are not also first letters of customer names.
+            var diffLetters =
+            products.Select(p => p.Name[0])
+            .Except(customers.Select(c => c.Name[0]));
+            #endregion
+
+            #region LINQ - Element Operators
+
+            // 1. Get first Product out of Stock 
+            var firstOut = products.First(p => p.UnitsInStock == 0);
+
+            // 2. Return the first product whose Price > 1000, unless there is no match, in which case null is returned.
+            var expensiveProduct =
+            products.FirstOrDefault(p => p.UnitPrice > 1000);
+
+            #endregion
+
+            #region LINQ - Partitioning Operators
+
+            // 1. Get the first 3 orders from customers in Washington
+            var first3 =
+            orders.Where(o => o.Customer == "WA")
+            .Take(3);
+
+            // 2. Get all but the first 2 orders from customers in Washington.
+            var skip2 =
+                orders.Where(o => o.Customer == "WA")
+                      .Skip(2);
+
+            // 3. Return elements starting from the beginning of the array until a number is hit that is less than its position in the array.
+            int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+
+            var valid =
+                numbers.TakeWhile((n, i) => n >= i);
+
+            // 4.Get the elements of the array starting from the first element divisible by 3.
+            var divisible =
+                numbers.SkipWhile(n => n % 3 != 0);
+            #endregion
+
+            #region LINQ - Quantifiers
+
+            //1. Determine if any of the words in dictionary_english.txt (Read dictionary_english.txt into Array of String First) contain the substring 'ei'.
+            bool found = words.Any(w => w.Contains("ei"));
+
+            // 2. Return a grouped a list of products only for categories that have at least one product that is out of stock.
+            var categoriesWithOut =
+            products.GroupBy(p => p.Category)
+            .Where(g => g.Any(p => p.UnitsInStock == 0));
+
+            // 3. Return a grouped a list of products only for categories that have all of their products in stock.
+            var allInStock =
+                products.GroupBy(p => p.Category)
+                        .Where(g => g.All(p => p.UnitsInStock > 0));
+
+
+            #endregion
         }
     }
 }
