@@ -165,10 +165,12 @@ namespace Assignment
             products.GroupBy(p => p.Category)
                     .Select(g => new { Category = g.Key, AvgPrice = g.Average(p => p.UnitPrice) });
 
+            #endregion
 
+            #region LINQ - Set Operators
 
-
-
+            // 1. Find the unique Category names from Product List
+            var uniqueCategories = products.Select(p => p.Category).Distinct();
             #endregion
         }
     }
