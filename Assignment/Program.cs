@@ -153,6 +153,14 @@ namespace Assignment
             products.GroupBy(p => p.Category)
                     .Select(g => new { Category = g.Key, MaxPrice = g.Max(p => p.UnitPrice) });
 
+            //13. Get the products with the most expensive price in each category.
+            var mostExpensive =
+                from p in products
+                group p by p.Category into g
+                let maxPrice1 = g.Max(x => x.UnitPrice)
+                select new { Category = g.Key, Products = g.Where(x => x.UnitPrice == maxPrice1) };
+
+
 
 
             #endregion
