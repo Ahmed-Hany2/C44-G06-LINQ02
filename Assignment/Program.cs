@@ -160,6 +160,12 @@ namespace Assignment
                 let maxPrice1 = g.Max(x => x.UnitPrice)
                 select new { Category = g.Key, Products = g.Where(x => x.UnitPrice == maxPrice1) };
 
+            // 14. Get the average price of each category's products.
+            var avgPrice =
+            products.GroupBy(p => p.Category)
+                    .Select(g => new { Category = g.Key, AvgPrice = g.Average(p => p.UnitPrice) });
+
+
 
 
 
