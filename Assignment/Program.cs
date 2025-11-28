@@ -141,6 +141,13 @@ namespace Assignment
                 products.GroupBy(p => p.Category)
                         .Select(g => new { Category = g.Key, MinPrice = g.Min(p => p.UnitPrice) });
 
+            // 11. Get the products with the cheapest price in each category (Use Let)
+            var cheapestProducts =
+                from p in products
+                group p by p.Category into g
+                let minPrice1 = g.Min(x => x.UnitPrice)
+                select new { Category = g.Key, Products = g.Where(x => x.UnitPrice == minPrice1) };
+
 
             #endregion
         }
