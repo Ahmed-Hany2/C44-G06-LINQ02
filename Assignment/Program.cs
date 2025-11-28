@@ -233,6 +233,12 @@ namespace Assignment
             products.GroupBy(p => p.Category)
             .Where(g => g.Any(p => p.UnitsInStock == 0));
 
+            // 3. Return a grouped a list of products only for categories that have all of their products in stock.
+            var allInStock =
+                products.GroupBy(p => p.Category)
+                        .Where(g => g.All(p => p.UnitsInStock > 0));
+
+
             #endregion
         }
     }
