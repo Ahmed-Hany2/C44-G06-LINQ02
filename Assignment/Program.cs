@@ -171,6 +171,13 @@ namespace Assignment
 
             // 1. Find the unique Category names from Product List
             var uniqueCategories = products.Select(p => p.Category).Distinct();
+
+            // 2. Produce a Sequence containing the unique first letter from both product and customer names.
+            var firstLetters =
+                products.Select(p => p.Name[0])
+                .Union(customers.Select(c => c.Name[0]))
+                .Distinct();
+
             #endregion
         }
     }
