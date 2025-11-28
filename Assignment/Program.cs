@@ -183,6 +183,12 @@ namespace Assignment
              products.Select(p => p.Name[0])
             .Intersect(customers.Select(c => c.Name[0]));
 
+            //4. Create one sequence that contains the first letters of product names that are not also first letters of customer names.
+            var diffLetters =
+            products.Select(p => p.Name[0])
+            .Except(customers.Select(c => c.Name[0]));
+
+
 
             #endregion
         }
