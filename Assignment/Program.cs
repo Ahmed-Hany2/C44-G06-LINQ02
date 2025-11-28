@@ -128,6 +128,9 @@ namespace Assignment
             // 7. Get the length of the longest word in dictionary_english.txt (Read dictionary_english.txt into Array of String First).
             int maxLen = words.Max(w => w.Length);
 
+            // 8. Get the average length of the words in dictionary_english.txt (Read dictionary_english.txt into Array of String First).
+            double avgLen = words.Average(w => w.Length);
+
             #endregion
         }
     }
