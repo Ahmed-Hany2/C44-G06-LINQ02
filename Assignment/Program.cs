@@ -112,6 +112,10 @@ namespace Assignment
             var categoryCount =
                 products.GroupBy(p => p.Category)
                         .Select(g => new { Category = g.Key, Count = g.Count() });
+
+
+            // 4. Get the total of the numbers in an array.
+            int total = Arr.Sum();
             #endregion
         }
     }
