@@ -207,6 +207,14 @@ namespace Assignment
             orders.Where(o => o.Customer == "WA")
             .Take(3);
 
+            // 2. Get all but the first 2 orders from customers in Washington.
+            var skip2 =
+                orders.Where(o => o.Customer == "WA")
+                      .Skip(2);
+
+            
+
+
             #endregion
         }
     }
