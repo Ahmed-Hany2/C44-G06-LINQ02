@@ -121,6 +121,9 @@ namespace Assignment
             string[] words = File.ReadAllLines("dictionary_english.txt");
 
             int totalChars = words.Sum(w => w.Length);
+
+            // 6. Get the length of the shortest word in dictionary_english.txt (Read dictionary_english.txt into Array of String First).
+            int minLen = words.Min(w => w.Length);
             #endregion
         }
     }
