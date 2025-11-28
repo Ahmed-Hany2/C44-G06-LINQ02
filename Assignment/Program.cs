@@ -124,6 +124,10 @@ namespace Assignment
 
             // 6. Get the length of the shortest word in dictionary_english.txt (Read dictionary_english.txt into Array of String First).
             int minLen = words.Min(w => w.Length);
+
+            // 7. Get the length of the longest word in dictionary_english.txt (Read dictionary_english.txt into Array of String First).
+            int maxLen = words.Max(w => w.Length);
+
             #endregion
         }
     }
