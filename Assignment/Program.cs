@@ -187,8 +187,12 @@ namespace Assignment
             var diffLetters =
             products.Select(p => p.Name[0])
             .Except(customers.Select(c => c.Name[0]));
+            #endregion
 
+            #region LINQ - Element Operators
 
+            // 1. Get first Product out of Stock 
+            var firstOut = products.First(p => p.UnitsInStock == 0);
 
             #endregion
         }
