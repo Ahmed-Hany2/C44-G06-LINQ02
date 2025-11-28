@@ -194,6 +194,10 @@ namespace Assignment
             // 1. Get first Product out of Stock 
             var firstOut = products.First(p => p.UnitsInStock == 0);
 
+            // 2. Return the first product whose Price > 1000, unless there is no match, in which case null is returned.
+            var expensiveProduct =
+            products.FirstOrDefault(p => p.UnitPrice > 1000);
+
             #endregion
         }
     }
